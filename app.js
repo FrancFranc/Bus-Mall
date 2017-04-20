@@ -67,26 +67,6 @@ function getThreeRandomPhotos(){
 }
 
 
-function handlePhotoClick(event){
-    var image = event.target;
-    var photosOnScreenIndex = image.getAttribute('photos-on-screen-index');
-    photosOnScreen[photosOnScreenIndex].clickCount++;
-
-    clicksRemaining--;
-
-    if (clicksRemaining > 0){
-      renderPhotoChoises();
-    } else {
-      renderChart();
-    }
-
-    try {
-        localStorage.photos = JSON.stringify(photos);
-    } catch (e) {
-        console.log('U failed.' + e);
-    }
-}
-
 
 function renderPhotoChoises(){
     // get three new photos
@@ -162,6 +142,28 @@ function renderChart(){
         type: 'bar',
         data: data,
     });
+}
+
+
+
+function handlePhotoClick(event){
+    var image = event.target;
+    var photosOnScreenIndex = image.getAttribute('photos-on-screen-index');
+    photosOnScreen[photosOnScreenIndex].clickCount++;
+
+    clicksRemaining--;
+
+    if (clicksRemaining > 0){
+      renderPhotoChoises();
+    } else {
+      renderChart();
+    }
+
+    try {
+        localStorage.photos = JSON.stringify(photos);
+    } catch (e) {
+        console.log('U failed.' + e);
+    }
 }
 
 
